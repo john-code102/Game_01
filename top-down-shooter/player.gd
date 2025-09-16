@@ -54,7 +54,7 @@ func controller(delta):
 	move_and_slide()
 
 func take_damage(damage):
-	pass
+	%health_manager.change_health(damage)
 
 
 func computer(delta):
