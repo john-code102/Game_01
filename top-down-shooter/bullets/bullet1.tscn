@@ -1,20 +1,53 @@
-[gd_scene load_steps=6 format=3 uid="uid://gju320vx7cxm"]
+[gd_scene load_steps=12 format=3 uid="uid://gju320vx7cxm"]
 
 [ext_resource type="Script" uid="uid://c7rkl78b0fx1s" path="res://bullets/bullet_1.gd" id="1_635yf"]
-[ext_resource type="Texture2D" uid="uid://djmfxcopu6p" path="res://icon.svg" id="2_ktpgc"]
+[ext_resource type="Texture2D" uid="uid://82q7hpbmkcxd" path="res://Images/Ink_0001.png" id="2_8keah"]
+[ext_resource type="Texture2D" uid="uid://ba0enw3ogormq" path="res://Images/Ink_0002.png" id="3_7fat3"]
+[ext_resource type="Texture2D" uid="uid://e4x88yb0od0o" path="res://Images/Ink_0003.png" id="4_yj5xl"]
+[ext_resource type="Texture2D" uid="uid://v3exyqnfrdgs" path="res://Images/Ink_0004.png" id="5_gcpf8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_635yf"]
 radius = 7.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vnuj5"]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_2hrb6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8keah")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7fat3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yj5xl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gcpf8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve" id="Curve_8keah"]
+_data = [Vector2(0, 0.49438208), 0.0, 0.0, 0, 0, Vector2(0.34090906, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7fat3"]
+curve = SubResource("Curve_8keah")
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_635yf"]
 particle_flag_disable_z = true
-inherit_velocity_ratio = 0.33
-spread = 180.0
-initial_velocity_max = 25.0
+initial_velocity_min = 2.0
+initial_velocity_max = 5.0
 gravity = Vector3(0, 0, 0)
-color = Color(0.572549, 0, 0, 1)
+scale_min = 5.0
+scale_max = 10.0
+scale_curve = SubResource("CurveTexture_7fat3")
+color = Color(0, 0, 0, 1)
+turbulence_enabled = true
 
 [node name="Bullet1" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
@@ -32,13 +65,15 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_vnuj5")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(1, 0, 0, 1)
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_ktpgc")
+texture_filter = 1
+position = Vector2(0, 2)
+sprite_frames = SubResource("SpriteFrames_2hrb6")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 amount = 25
+lifetime = 5.0
 process_material = SubResource("ParticleProcessMaterial_635yf")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
