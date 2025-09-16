@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b52kqgvdg37bf"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8q2ww"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_max = 11.49
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 3.0
+
+[node name="thrust_effect" type="GPUParticles2D"]
+position = Vector2(-1, -1)
+process_material = SubResource("ParticleProcessMaterial_8q2ww")
