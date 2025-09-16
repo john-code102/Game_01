@@ -28,13 +28,13 @@ func controller(delta):
 		var target_angle = aim_vector.angle()
 		rotation = lerp_angle(rotation, target_angle , rotation_speed * delta)
 
-
+	var play_squid
 	if Input.is_action_pressed("thrust"):
 		velocity += Vector2.UP.rotated(rotation) * acceleration * delta
 		%thrust_effect.emitting = true
+		play_squid = true
 	else:
-		pass
-		
+		play_squid = false
 		%thrust_effect.emitting = false
 	
 	velocity = velocity.move_toward(Vector2.ZERO, drag * delta)
@@ -51,6 +51,17 @@ func controller(delta):
 	
 	current_force = velocity.length()
 
+	if play_squid:
+		var temp_speed = current_force / 50
+		if temp_speed > 1:
+			temp_speed = 1
+		%squid_art.speed_scale = temp_speed
+		%squid_art.play()
+	else:
+		%squid_art.stop()
+		%squid_art.frame = 0
+	
+	
 	move_and_slide()
 
 func take_damage(damage):
