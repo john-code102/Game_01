@@ -6,6 +6,8 @@ extends CharacterBody2D
 @export var drag: float = 100.0
 @export var rotation_speed: float = 5.0
 
+var current_force = 0
+
 var body_rotation = 0
 var speed =0 
 
@@ -47,8 +49,12 @@ func controller(delta):
 	if velocity.length() > max_speed:
 		velocity = velocity.normalized() * max_speed
 	
+	current_force = velocity.length()
 
 	move_and_slide()
+
+func take_damage(damage):
+	pass
 
 
 func computer(delta):
