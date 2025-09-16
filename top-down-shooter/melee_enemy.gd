@@ -25,3 +25,9 @@ func _physics_process(_delta: float) -> void:
 		
 
 	move_and_slide()
+	
+
+
+func _on_damage_area_body_entered(_body: Node2D) -> void:
+	if player.has_method("takeDamage"):
+		player.takeDamage(1)
