@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdnrr5m226qqu"]
+
+[ext_resource type="Script" uid="uid://c7rkl78b0fx1s" path="res://bullets/bullet_1.gd" id="1_aek2n"]
+[ext_resource type="Texture2D" uid="uid://djmfxcopu6p" path="res://icon.svg" id="2_7fix8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_635yf"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vnuj5"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_635yf"]
+particle_flag_disable_z = true
+inherit_velocity_ratio = 0.33
+spread = 180.0
+initial_velocity_max = 25.0
+gravity = Vector3(0, 0, 0)
+color = Color(0.572549, 0, 0, 1)
+
+[node name="Bullet1" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("1_aek2n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_635yf")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_vnuj5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_7fix8")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_635yf")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

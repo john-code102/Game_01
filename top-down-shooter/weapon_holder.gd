@@ -4,7 +4,7 @@ var target_angle_global := 0.0
 var smooth_angle_global := 0.0
 @export var aim_smoothness: float = 10.0 
 
-@export var gun_scene : PackedScene
+var gun_scene
 var gun_set = false
 
 var gun
@@ -18,6 +18,9 @@ var is_grappling: bool = false
 
 
 func _process(delta: float) -> void:
+	
+	gun_scene = Global.gun
+	
 	aim(delta)
 	
 	if Input.is_action_pressed("grapple") and !is_grappling:
@@ -32,8 +35,6 @@ func _process(delta: float) -> void:
 		gun = gun_scene.instantiate()
 		add_child(gun)
 		
-	
-	print(is_grappling)
 	
 	if is_grappling:
 		%grapple_line.set_point_position(0, position)
