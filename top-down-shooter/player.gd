@@ -69,4 +69,45 @@ func take_damage(damage):
 
 
 func computer(delta):
-	pass
+	
+	var roation_dir = Input.get_axis("rotate_left", "rotate_right")
+	
+	
+	rotation += roation_dir * rotation_speed * delta
+	
+	
+	var play_squid
+	if Input.is_action_pressed("thrust"):
+		velocity += Vector2.UP.rotated(rotation) * acceleration * delta
+		%thrust_effect.emitting = true
+		play_squid = true
+	else:
+		play_squid = false
+		%thrust_effect.emitting = false
+	
+	velocity = velocity.move_toward(Vector2.ZERO, drag * delta)
+	
+	if Input.is_action_pressed("break"):
+		%thrust_effect.emitting = false
+		velocity = velocity.move_toward(Vector2.ZERO, 5 *drag * delta)
+	
+	
+	
+
+	if velocity.length() > max_speed:
+		velocity = velocity.normalized() * max_speed
+	
+	current_force = velocity.length()
+	
+	if play_squid:
+		var temp_speed = current_force / 50
+		if temp_speed > 1:
+			temp_speed = 1
+		%squid_art.speed_scale = temp_speed
+		%squid_art.play()
+	else:
+		%squid_art.stop()
+		%squid_art.frame = 0
+	
+	
+	move_and_slide()

@@ -21,7 +21,10 @@ func _process(delta: float) -> void:
 	
 	gun_scene = Global.gun
 	
-	aim(delta)
+	if Global.controller:
+		aim_controler(delta)
+	else:
+		aim_computer(delta)
 	
 	if Input.is_action_pressed("grapple") and !is_grappling:
 		try_grapple()
@@ -46,7 +49,15 @@ func _process(delta: float) -> void:
 	
 	
 
-func aim(delta):
+func aim_computer(delta):
+	var temp = get_parent().get_angle_to(get_global_mouse_position())
+	var holder = rad_to_deg(temp) + 90
+	target_angle_global = deg_to_rad(holder)
+	smooth_angle_global = lerp_angle(smooth_angle_global, target_angle_global, delta * aim_smoothness)
+	var parent = get_parent()
+	rotation = smooth_angle_global
+
+func aim_controler(delta):
 	var aim_vector = Input.get_vector("cr_down", "cr_up", "cr_left", "cr_right")
 	if aim_vector.length() > 0:
 
