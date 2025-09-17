@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://38axbtnnp5fm"]
+[gd_scene load_steps=13 format=3 uid="uid://38axbtnnp5fm"]
 
 [ext_resource type="Script" uid="uid://c6egktmv0fwe" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://mws7xdce72qp" path="res://Images/Squid_0001.png" id="2_1jxqw"]
@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://dllnbo6vi37hm" path="res://weapon_holder.gd" id="3_hqtel"]
 [ext_resource type="PackedScene" uid="uid://b52kqgvdg37bf" path="res://thrust_effect.tscn" id="3_i3pqv"]
 [ext_resource type="Texture2D" uid="uid://dw6homeera1go" path="res://Reticle.png" id="4_sweqy"]
-[ext_resource type="Script" path="res://health.gd" id="5_2hs0m"]
+[ext_resource type="Script" uid="uid://cimoixtmpl6jh" path="res://health.gd" id="5_2hs0m"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1jxqw"]
 animations = [{
@@ -22,8 +22,8 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hqtel"]
-size = Vector2(12, 26)
+[sub_resource type="CircleShape2D" id="CircleShape2D_1jxqw"]
+radius = 12.0
 
 [sub_resource type="Gradient" id="Gradient_sweqy"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -33,6 +33,9 @@ gradient = SubResource("Gradient_sweqy")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.807339, 0.192661)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dw050"]
+size = Vector2(20, 18)
 
 [node name="player" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
@@ -49,7 +52,7 @@ sprite_frames = SubResource("SpriteFrames_1jxqw")
 frame_progress = 0.44372323
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_hqtel")
+shape = SubResource("CircleShape2D_1jxqw")
 
 [node name="weapon_holder" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -84,3 +87,12 @@ unique_name_in_owner = true
 points = PackedVector2Array(0, 0, 0, 0)
 width = 5.0
 default_color = Color(0, 1, 1, 1)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_dw050")
+
+[connection signal="body_entered" from="Area2D" to="health_manager" method="_on_area_2d_body_entered"]

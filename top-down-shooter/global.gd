@@ -6,6 +6,7 @@ var Player
 
 var gun : PackedScene
 
+var health = 100
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("return home"):
