@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://d3skfu657xkdb"]
 
 [ext_resource type="Script" uid="uid://cjry5yha3xqvv" path="res://menu.gd" id="1_lti8b"]
-[ext_resource type="PackedScene" uid="uid://cryaiie5h3tue" path="res://guns/gun.tscn" id="3_ecwwl"]
-[ext_resource type="PackedScene" uid="uid://5iiwwmln0n52" path="res://guns/big.tscn" id="4_kk3ma"]
-[ext_resource type="PackedScene" uid="uid://cjr0o5q8scgdb" path="res://guns/spray.tscn" id="5_nrnbx"]
-[ext_resource type="PackedScene" uid="uid://45qsu6x182cq" path="res://guns/spread.tscn" id="6_iqepy"]
-[ext_resource type="PackedScene" uid="uid://cwg4u6xlfnquk" path="res://guns/circel.tscn" id="7_h1wq0"]
+[ext_resource type="PackedScene" uid="uid://cryaiie5h3tue" path="res://reusables/weapons/weapons/gun.tscn" id="3_ecwwl"]
+[ext_resource type="PackedScene" uid="uid://5iiwwmln0n52" path="res://reusables/weapons/weapons/bigBullets.tscn" id="4_kk3ma"]
+[ext_resource type="PackedScene" uid="uid://cjr0o5q8scgdb" path="res://reusables/weapons/weapons/spray.tscn" id="5_nrnbx"]
+[ext_resource type="PackedScene" uid="uid://45qsu6x182cq" path="res://reusables/weapons/weapons/spread.tscn" id="6_iqepy"]
+[ext_resource type="PackedScene" uid="uid://cwg4u6xlfnquk" path="res://reusables/weapons/weapons/circularPattern.tscn" id="7_h1wq0"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
