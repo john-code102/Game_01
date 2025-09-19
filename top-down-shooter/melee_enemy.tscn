@@ -4,10 +4,10 @@
 [ext_resource type="Script" uid="uid://bbl5d4qcunf86" path="res://melee_enemy.gd" id="1_vn61j"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_legso"]
-size = Vector2(192, 192)
+size = Vector2(160, 160)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vn61j"]
-size = Vector2(128, 128)
+size = Vector2(80, 80)
 
 [node name="Melee_enemy" type="CharacterBody2D"]
 collision_layer = 16
@@ -15,7 +15,8 @@ collision_mask = 7
 script = ExtResource("1_vn61j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.2, 0.2)
+position = Vector2(0, 2.3841858e-07)
+scale = Vector2(0.12500001, 0.125)
 texture = ExtResource("1_otv3p")
 
 [node name="DamageArea" type="Area2D" parent="."]

@@ -1,15 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfusd7frphra1"]
+[gd_scene load_steps=7 format=3 uid="uid://cfusd7frphra1"]
 
 [ext_resource type="PackedScene" uid="uid://38axbtnnp5fm" path="res://player.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://mqrsg3vgcexp" path="res://object.gd" id="1_fc0e3"]
 [ext_resource type="Texture2D" uid="uid://djmfxcopu6p" path="res://icon.svg" id="2_e2o6t"]
 [ext_resource type="Script" uid="uid://ca2jkk37wrfgv" path="res://health_bar.gd" id="4_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://bpyax8wexar8p" path="res://melee_enemy.tscn" id="5_7jktm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e2o6t"]
 size = Vector2(122, 124)
 
 [node name="game" type="Node2D"]
-position = Vector2(423, 312)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.733082, 0.876917, 0.997945, 1)
@@ -140,3 +140,6 @@ offset_bottom = 640.0
 size_flags_horizontal = 3
 show_percentage = false
 script = ExtResource("4_fc0e3")
+
+[node name="Melee_enemy" parent="." instance=ExtResource("5_7jktm")]
+position = Vector2(-72, 63)

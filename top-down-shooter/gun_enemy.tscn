@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://p0alv4ejm6xc"]
+
+[ext_resource type="Script" uid="uid://csau4bnht2fad" path="res://gun_enemy.gd" id="1_nvn6k"]
+[ext_resource type="Texture2D" uid="uid://djmfxcopu6p" path="res://icon.svg" id="2_r4b8p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vn61j"]
+size = Vector2(80, 80)
+
+[node name="gun_enemy" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 7
+script = ExtResource("1_nvn6k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 2.3841858e-07)
+scale = Vector2(0.12500001, 0.125)
+texture = ExtResource("2_r4b8p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.2, 0.2)
+shape = SubResource("RectangleShape2D_vn61j")
